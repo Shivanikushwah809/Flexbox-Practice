@@ -1,0 +1,67 @@
+$gap:4vh;
+$padding:4vh;
+$color:#48CAE4;
+
+$bp: (
+    mobile: 480px,
+    laptop:768,
+    desktop:1440px,
+    );
+
+
+  @mixin query($screen){
+      @each $key, $value in $bp{
+          @if ($screen == $key){
+              @media (max-width: $value){
+                  @content;
+              }
+          }
+      }
+  }
+
+  *{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    body{
+        font-family: sans-serif;
+        font-size: 45px;
+        width: 100%;
+        min-height: 100vh;
+    }
+  }
+
+
+
+  .container{
+      display: flex;
+      flex-direction: column;
+      gap: $gap;
+      padding: $padding;
+      border: 1vh solid $color;
+  }
+
+
+  [class ^="block-"]{
+      display: flex;
+      flex-direction: row;
+       gap: $gap;
+      height: (100vh-2vh - $gap*2-$padding*2)/3;
+      @include query(mobile){
+          flex-direction: column;
+          height: 500px;
+      }
+  } 
+
+  [class ^="Box-"]{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+     flex-basis: (100%)/3;
+      background-color: #c1c1c1;
+      border: 2px solid black;
+      border-radius: 10px;
+      
+
+  }
